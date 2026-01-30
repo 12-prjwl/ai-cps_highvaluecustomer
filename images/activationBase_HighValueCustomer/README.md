@@ -1,4 +1,4 @@
-# learningBase_HighValueCustomer
+# activationBase_HighValueCustomer 
 
 ## Ownership
 Authors: Harsh Gohel and Prajwal Vaidya
@@ -10,17 +10,16 @@ This image was created as part of the course **'M. Grum: Advanced AI-based Appli
 Original Dataset: High Value Customer from GitHub repository
 
 ## License
-This project is committed to the **AGPL-3.0 license**.
+This project is committed to the **AGPL-3.0 license**. 
 
 ## Contents
 This image provides:
-- **training_data.csv** at `/tmp/learningBase/train/training_data.csv`
-- **test_data.csv** at `/tmp/learningBase/validation/test_data.csv`
+- **activation_data.csv** at `/tmp/activationBase/activation_data.csv`
 
 ## Usage
 Pull the image:
 ```bash
-docker pull harshgohel923/learningbase_highvaluecustomer:latest
+docker pull harshgohel923/activationbase_highvaluecustomer:latest
 ```
 
 Run with docker-compose (see docker-compose.yml in this directory).
