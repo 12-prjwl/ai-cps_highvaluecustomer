@@ -1,0 +1,10 @@
+services:
+  knowledgebase:
+    image: harshgohel923/knowledgebase_highvaluecustomer:latest
+    volumes:
+      - ai_system:/tmp
+    command: sh -c "ls -la /tmp/knowledgeBase && sleep infinity"
+
+volumes:
+  ai_system:
+    external: false

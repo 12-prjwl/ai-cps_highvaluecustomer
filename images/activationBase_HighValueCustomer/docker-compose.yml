@@ -1,0 +1,12 @@
+services:
+  activationbase:
+    image: activationbase_highvaluecustomer
+    container_name: activationbase_highvaluecustomer
+    volumes:
+     - ai_system:/tmp
+    stdin_open: true
+    tty: true
+
+volumes:
+ ai_system:
+   external: true

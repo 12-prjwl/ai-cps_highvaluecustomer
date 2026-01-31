@@ -1,0 +1,14 @@
+# For testing purposes
+
+services:
+  learningbase:
+    image: learningbase_highvaluecustomer
+    container_name: learningbase_highvaluecustomer
+    volumes:
+      - ai_system:/tmp
+    stdin_open: true
+    tty: true
+
+volumes:
+  ai_system:
+    external: true
