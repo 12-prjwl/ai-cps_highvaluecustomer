@@ -1,0 +1,48 @@
+# tensorflow==2.20.0
+# pandas==3.0.0
+# numpy==2.4.1
+# scikit-learn==1.8.0
+# statsmodels==0.14.6
+# joblib==1.5.3
+# scipy<1.16.0
+
+# numpy==1.26.4
+# scipy==1.15.3
+# statsmodels==0.14.6
+# pandas==2.2.2
+# joblib==1.4.2
+# tensorflow==2.15.0
+
+# tensorflow==2.20
+# keras==3.13.1
+# h5py==3.15.1
+
+# pandas==3.0.0
+# numpy==2.4.1
+# scikit-learn==1.8.0
+# joblib==1.5.3
+
+# Core Dependencies for High Value Customer Prediction
+# Compatible versions for Python 3.11
+
+# TensorFlow and Keras (using latest stable versions)
+tensorflow==2.20.0
+# Keras is included in TensorFlow 2.18+
+
+# Data Processing
+numpy==1.26.4
+pandas==2.2.3
+
+# Machine Learning
+scikit-learn==1.5.2
+
+# Statistical Modeling (OLS)
+statsmodels==0.14.4
+scipy==1.14.1
+
+# Model Persistence
+joblib==1.4.2
+h5py==3.12.1
+
+# Additional dependencies
+patsy==0.5.6
