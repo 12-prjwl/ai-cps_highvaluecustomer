@@ -1,0 +1,44 @@
+services:
+  knowledge_base:
+    image: harshgohel923/knowledgebase_highvaluecustomer:latest
+    volumes:
+      - ai_system:/shared_data
+    command:
+      - sh
+      - "-c"
+      - |
+        rm -rf /shared_data/* && 
+        cp -r /tmp/knowledgeBase /shared_data/ &&
+        echo '✅ Knowledge Base: Models copied' &&
+        ls -lh /shared_data/knowledgeBase/
+
+  activation_base:
+    image: harshgohel923/activationbase_highvaluecustomer:latest
+    depends_on:
+      - knowledge_base
+    volumes:
+      - ai_system:/shared_data
+    command:
+      - sh
+      - "-c"
+      - |
+        cp -r /tmp/activationBase /shared_data/ &&
+        echo '✅ Activation Base: Data copied' &&
+        ls -lh /shared_data/activationBase/
+
+  code_base:
+    image: harshgohel923/codebase_highvaluecustomer:latest
+    depends_on:
+      - activation_base
+    volumes:
+      - ai_system:/tmp
+    command:
+      - sh
+      - "-c"
+      - |
+        echo '✅ Code Base: Running AI Model' &&
+        python /codeBase/RunAiModel.py
+
+volumes:
+  ai_system:
+    external: true

@@ -20,3 +20,8 @@ This project is licensed under the AGPL-3.0 License.
 
 ## Usage
 This image provides models at `/tmp/knowledgeBase/` for use in AI-based customer prediction systems.
+
+Pull the image:
+```bash
+docker pull harshgohel923/knowledgebase_highvaluecustomer:latest
+```
