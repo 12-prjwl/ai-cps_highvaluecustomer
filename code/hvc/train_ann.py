@@ -8,20 +8,38 @@ from tensorflow.keras.layers import Dense
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.callbacks import EarlyStopping
 
-from sklearn.metrics import classification_report, roc_auc_score
+import matplotlib.pyplot as plt
 
+from sklearn.metrics import classification_report, roc_auc_score, roc_curve
+
+
+# =========================
+# Paths
+# =========================
 
 TRAIN_PATH = Path("data/high_value_customer/splits/training_data.csv")
 TEST_PATH = Path("data/high_value_customer/splits/test_data.csv")
 MODEL_DIR = Path("code/high_value_customer/models")
 
-EPOCHS = 30         
+DOC_DIR = Path("documentation")
+DOC_DIR.mkdir(exist_ok=True)
+
+# =========================
+# Config
+# =========================
+
+EPOCHS = 30
 BATCH_SIZE = 32
 LEARNING_RATE = 0.001
 RANDOM_STATE = 42
 
 np.random.seed(RANDOM_STATE)
 tf.random.set_seed(RANDOM_STATE)
+
+
+# =========================
+# Data Loading
+# =========================
 
 def load_data():
     train_df = pd.read_csv(TRAIN_PATH)
@@ -36,6 +54,9 @@ def load_data():
     return X_train, X_test, y_train, y_test
 
 
+# =========================
+# Model
+# =========================
 
 def build_ann(input_dim: int):
     model = Sequential([
@@ -56,6 +77,10 @@ def build_ann(input_dim: int):
     return model
 
 
+# =========================
+# Training + Evaluation
+# =========================
+
 def train_and_evaluate():
     print("Loading data...")
     X_train, X_test, y_train, y_test = load_data()
@@ -64,7 +89,6 @@ def train_and_evaluate():
     print(f"Testing samples: {X_test.shape}")
 
     model = build_ann(X_train.shape[1])
-
     model.summary()
 
     early_stopping = EarlyStopping(
@@ -84,6 +108,10 @@ def train_and_evaluate():
         verbose=1
     )
 
+    # =========================
+    # Evaluation
+    # =========================
+
     print("Evaluating model...")
     y_pred_prob = model.predict(X_test).ravel()
     y_pred = (y_pred_prob >= 0.5).astype(int)
@@ -94,14 +122,61 @@ def train_and_evaluate():
     auc = roc_auc_score(y_test, y_pred_prob)
     print(f"ROC AUC Score: {auc:.4f}")
 
-    # Saving the model
+    # =========================
+    # Save Model
+    # =========================
+
     MODEL_DIR.mkdir(parents=True, exist_ok=True)
     model.save(MODEL_DIR / "currentAiSolution.h5")
 
     print("Model saved at:")
     print(MODEL_DIR / "currentAiSolution.h5")
 
+    # =========================
+    # Visualizations
+    # =========================
 
+    # 1. Loss curve
+    plt.figure()
+    plt.plot(history.history["loss"], label="Train Loss")
+    plt.plot(history.history["val_loss"], label="Val Loss")
+    plt.xlabel("Epoch")
+    plt.ylabel("Loss")
+    plt.title("ANN Training vs Validation Loss")
+    plt.legend()
+    plt.savefig(DOC_DIR / "ann_loss_curve.png")
+    plt.close()
+
+    # 2. AUC curve
+    plt.figure()
+    plt.plot(history.history["auc"], label="Train AUC")
+    plt.plot(history.history["val_auc"], label="Val AUC")
+    plt.xlabel("Epoch")
+    plt.ylabel("AUC")
+    plt.title("ANN Training vs Validation AUC")
+    plt.legend()
+    plt.savefig(DOC_DIR / "ann_auc_curve.png")
+    plt.close()
+
+    # 3. ROC curve
+    fpr, tpr, _ = roc_curve(y_test, y_pred_prob)
+
+    plt.figure()
+    plt.plot(fpr, tpr, label=f"ANN (AUC = {auc:.2f})")
+    plt.plot([0, 1], [0, 1], "k--")
+    plt.xlabel("False Positive Rate")
+    plt.ylabel("True Positive Rate")
+    plt.title("ROC Curve – ANN")
+    plt.legend()
+    plt.savefig(DOC_DIR / "ann_roc_curve.png")
+    plt.close()
+
+    print("Training visualizations saved to /documentation")
+
+
+# =========================
+# Main
+# =========================
 
 if __name__ == "__main__":
     train_and_evaluate()
