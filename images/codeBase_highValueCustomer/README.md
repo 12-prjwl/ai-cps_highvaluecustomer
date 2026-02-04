@@ -7,7 +7,7 @@ Authors: Harsh Gohel and Prajwal Vaidya
 This image was created as part of the course **'M. Grum: Advanced AI-based Application Systems'** by the **Junior Chair for Business Information Science, esp. AI-based Application Systems** at University of Potsdam.
 
 ## Data Origin
-Original Dataset: High Value Customer from GitHub repository
+Original Dataset: High Value Customer from [GitHub page] (https://github.com/12-prjwl/AI-CPS_HighValueCustomer/tree/main/data/high_value_customer/raw)
 
 ## Description
 This image contains the execution code for applying trained AI and OLS models to predict high-value customers.

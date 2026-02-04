@@ -7,7 +7,7 @@ Authors: Harsh Gohel and Prajwal Vaidya
 This image was created as part of the course **'M. Grum: Advanced AI-based Application Systems'** by the **Junior Chair for Business Information Science, esp. AI-based Application Systems** at University of Potsdam.
 
 ## Data Origin
-Original Dataset: High Value Customer from GitHub repository
+Original Dataset: High Value Customer from [GitHub page] (https://github.com/12-prjwl/AI-CPS_HighValueCustomer/tree/main/data/high_value_customer/raw)
 
 ## License
 This project is committed to the **AGPL-3.0 license**. 

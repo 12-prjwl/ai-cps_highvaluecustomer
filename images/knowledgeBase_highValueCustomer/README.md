@@ -11,6 +11,17 @@ This image contains trained AI and OLS models for predicting high-value customer
 
 ### Model Characteristics
 
+* **ANN**
+
+  * ROC AUC ≈ 0.99
+  * Captures nonlinear customer behavior
+* **OLS**
+
+  * ROC AUC ≈ 0.89
+  * Linear baseline for comparison
+
+Training diagnostics and evaluation plots are stored in the `documentation/` directory.
+
 
 ## Data Source
 The models were trained on data scraped from GitHub repository
