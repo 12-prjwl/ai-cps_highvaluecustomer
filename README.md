@@ -81,7 +81,7 @@ Download from: https://www.docker.com/products/docker-desktop
 
 ---
 
-### 2️⃣ Pull Docker Images
+### 2️⃣ Clone this repository
 ```bash
 cd ~/Desktop
 git clone https://github.com/12-prjwl/AI-CPS_HighValueCustomer.git
